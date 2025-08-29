@@ -1,0 +1,4 @@
+baseURL = 'https://kaarnam.com/'
+languageCode = 'en-us'
+title = 'homepage'
+theme = 'maverick'
