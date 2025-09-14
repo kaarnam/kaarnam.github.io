@@ -4,4 +4,3 @@
 
 Hello! I'm a data and graphics journalist based in New York City. My bylines have appeared in Reuters, L.A. Times, The San Diego Union-Tribune, The Counter, The Sydney Morning Herald, Times of India and many others.
 
-### Selected work
