@@ -1,6 +1,6 @@
 baseURL = 'https://kaarnam.com/'
 languageCode = 'en-us'
-title = 'homepage'
+title = 'Karthika Namboothiri'
 theme = 'maverick'
 
 [menu]
@@ -11,6 +11,6 @@ theme = 'maverick'
     weight = -110
   [[menu.main]]
     identifier = "posts"
-    name = "Post"
+    name = "Published work"
     url = "/posts/"
     weight = -200
