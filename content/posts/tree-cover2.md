@@ -7,5 +7,5 @@ tags:
 - sample
 ---
 
-A detailed analysis by nextLI of satellite data from the U.S. Geological Survey of every census tract on Long Island shows that tree cover is disproportionately spread across Long Island.
+A detailed analysis of satellite data from the U.S. Geological Survey of every census tract on Long Island shows that tree cover is disproportionately spread across Long Island.
 
