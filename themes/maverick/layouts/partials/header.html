@@ -28,7 +28,7 @@
       <ul style="padding: 0;margin: 0;">
         {{ $currentPage := . }}
         {{ range $menu }}
-          <li class="{{ if $currentPage.HasMenuCurrent . }}active{{ end }}">
+          <li class="{{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
             <a href="{{ .URL }}"><span>{{ .Name }}</span></a>
           </li>
         {{ end }}
