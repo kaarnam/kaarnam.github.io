@@ -10,7 +10,7 @@
 
       {{ $posts := where .Site.RegularPages "Section" "posts" }}
       {{ if gt (len $posts) 0 }}
-        <h1>Latest Post</h1>
+        <h2>Selected work</h2>
         <section>
           {{ range first 1 ($posts.ByDate.Reverse) }}
             <p>
