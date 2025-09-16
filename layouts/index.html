@@ -22,6 +22,17 @@
             <p>{{ .Summary }}</p>
           {{ end }}
         </section>
+      <section>
+          {{ range first 2 ($posts.ByDate.Reverse) }}
+            <p>
+              <time class="g time" datetime="{{ dateFormat "2006-01-02" .Date }}">
+                {{ dateFormat "2006-01-02" .Date }}
+              </time>
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </p>
+            <p>{{ .Summary }}</p>
+          {{ end }}
+        </section>
       {{ end }}
     </div>
   </main>
