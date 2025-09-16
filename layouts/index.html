@@ -23,7 +23,7 @@
           {{ end }}
         </section>
       <section>
-          {{ range first 2 ($posts.ByDate.Reverse) }}
+          {{ range second 2 ($posts.ByDate.Reverse) }}
             <p>
               <time class="g time" datetime="{{ dateFormat "2006-01-02" .Date }}">
                 {{ dateFormat "2006-01-02" .Date }}
