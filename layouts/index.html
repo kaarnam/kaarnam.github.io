@@ -19,7 +19,10 @@
               </time>
               <a href="{{ .RelPermalink }}">{{ .Title }}</a>
             </p>
-            <p>{{ .Summary }}</p>
+            <p>{{ if .Params.image }}
+          <img src="{{ .Params.image }}" alt="Post image" style="float: right; max-width: 150px; margin-left: 16px;">
+        {{ end }}
+        {{ .Summary }}</p>
           {{ end }}
         </section>
       {{ end }}
