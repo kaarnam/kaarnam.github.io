@@ -6,7 +6,7 @@ tags:
 - environment
 - QGIS
 - Adobe Illustrator
-image: "/images/tree-cover.jpg" 
+image: "/images/tree-cover.png" 
 ---
 
 A detailed analysis of satellite data from the U.S. Geological Survey of every census tract on Long Island shows that tree cover is disproportionately spread across Long Island.
