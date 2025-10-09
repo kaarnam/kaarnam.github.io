@@ -12,7 +12,7 @@
       {{ if gt (len $posts) 0 }}
         <h2>Selected work</h2>
       <section>
-          {{ range first 2 ($posts.ByDate.Reverse) }}
+          {{ range first 10 ($posts.ByDate.Reverse) }}
             <p>
               <time class="g time" datetime="{{ dateFormat "2006-01-02" .Date }}">
                 {{ dateFormat "2006-01-02" .Date }}
