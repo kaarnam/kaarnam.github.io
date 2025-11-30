@@ -2,7 +2,7 @@
 author: "Karthika Namboothiri"
 title: "Tree cover analysis using satellite data for Long Island"
 date: "2022-03-15"
-For: "Newsday"
+source: "Newsday"
 tags: 
 - environment
 - spatial analysis

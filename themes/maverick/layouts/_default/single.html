@@ -2,33 +2,247 @@
 <html lang="en">
   {{ partial "head.html" . }}
 <body>
+  <style>
+    /* Layout matching the mockup with larger, touching images */
+    .article-layout {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      grid-template-rows: auto 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      margin: 1rem 0 1.5rem;
+      position: relative;
+      overflow: visible;
+    }
+
+    /* Headline spans full width */
+    .article-layout > h2.post {
+      grid-column: 1 / -1;
+      margin: 0 0 0.6rem 0;
+      font-size: 2rem;
+      line-height: 1.05;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: visible;
+    }
+
+    .article-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      grid-column: 1 / 2;
+      grid-row: 2;
+      padding-bottom: 2rem;
+    }
+
+    .post-meta {
+      color: #666;
+      margin: 0.25rem 0 1rem;
+      font-size: 0.95rem;
+    }
+
+    .content-text {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Right column: first image - made larger */
+    .article-images {
+      position: relative;
+      overflow: visible;
+      grid-column: 2 / 3;
+      grid-row: 2;
+      align-self: start;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+    }
+    
+    .article-images .img1 img {
+      width: 100%;
+      min-height: 400px;
+      height: auto;
+      object-fit: contain;
+      border: 1px solid #d8d8d8;
+      background: #fff;
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Second image - made much larger to touch img1 */
+    .article-layout > .img2 {
+      grid-column: 1 / 2;
+      grid-row: 3;
+      justify-self: stretch;
+      width: 115%;
+      margin-top: -5rem;
+      margin-left: 0;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .article-layout > .img2 img {
+      width: 100%;
+      min-height: 380px;
+      height: auto;
+      object-fit: contain;
+      border: 1px solid #d8d8d8;
+      display: block;
+      background: #fff;
+    }
+
+    /* Subtle lift shadow to the right and bottom so images feel slightly elevated */
+    .article-images .img1 img,
+    .article-layout > .img2 img {
+      box-shadow: 6px 8px 18px rgba(0,0,0,0.08);
+    }
+
+    a.back-home {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #111;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Tags positioned below img2 */
+    .post-tags {
+      grid-column: 1 / 2;
+      grid-row: 4;
+      justify-self: stretch;
+      width: 115%;
+      margin-top: 0.8rem;
+      margin-left: 0;
+      color: #333;
+      font-size: 0.95rem;
+    }
+    
+    .post-tags strong {
+      font-weight: 600;
+    }
+    
+    .post-tags a {
+      margin-right: 0.5rem;
+      color: #111;
+      text-decoration: none;
+    }
+    
+    .post-tags a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .article-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto auto;
+      }
+      
+      .article-layout > h2.post {
+        font-size: 1.6rem;
+        white-space: normal;
+      }
+      
+      .article-body {
+        grid-column: 1 / -1;
+      }
+      
+      .article-images {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        margin-top: 1.5rem;
+      }
+      
+      .article-images .img1 img {
+        aspect-ratio: 4/3;
+        min-height: auto;
+      }
+      
+      .article-layout > .img2 {
+        grid-column: 1 / -1;
+        grid-row: 4;
+        width: 100%;
+        margin-top: 1rem;
+        justify-self: stretch;
+      }
+      
+      .article-layout > .img2 img {
+        min-height: auto;
+      }
+      
+      .post-tags {
+        grid-column: 1 / -1;
+        grid-row: 5;
+        justify-self: stretch;
+        width: 100%;
+      }
+    }
+  </style>
+  
   <a class="skip-link" href="#main">Skip to main</a>
   <main id="main">
-  <div class="content">
-    {{ partial "header.html" . }}
-    <section>
-      <h2 class="post">{{ .Title }}</h2>
-      {{ .Content }}
-      {{ if ne .Section "pages" }}
-      <div class="post-date">
-        <span class="g time">{{.Date.Format "January 2, 2006"}} </span> &#8729;
-        {{ $taxonomy := "tags" }} {{ with .Param $taxonomy }}
-        {{ range $index, $tag := . }} {{ with $.Site.GetPage (printf "/%s/%s"
-        $taxonomy $tag) -}}
-        <a href="{{ .Permalink }}">{{ $tag | urlize }}</a>
-        {{- end -}} {{- end -}}
-        {{ end }}
+    <div class="content">
+      {{ partial "header.html" . }}
+      <p><a class="back-home" href="/">&laquo;&laquo; Back to homepage</a></p>
+      <section>
+        <div class="article-layout">
+          <h2 class="post">{{ .Title }}</h2>
+          
+          <div class="article-body">
+            {{ if ne .Section "pages" }}
+            <div class="post-meta">
+              <span class="g time">{{.Date.Format "January 2, 2006"}}</span>
+            </div>
+            {{ end }}
+
+            <div class="content-text">
+              {{ .Content }}
+            </div>
+          </div>
+
+          <div class="article-images">
+            {{ if .Params.image }}
+            <div class="img1">
+              <img src="{{ .Params.image }}" alt="">
+            </div>
+            {{ end }}
+          </div>
+
+          {{ if .Params.image2 }}
+          <div class="img2 overlap">
+            <img src="{{ .Params.image2 }}" alt="">
+          </div>
+          {{ else }}
+          <div class="img2 overlap">
+            <img src="/js/img.png" alt="placeholder image">
+          </div>
+          {{ end }}
+          
+          {{ if ne .Section "pages" }}
+          <div class="post-tags">
+            {{ $taxonomy := "tags" }}
+            {{ with .Param $taxonomy }}
+            <strong>Tags:</strong>
+            {{ range $index, $tag := . }}
+              {{ with $.Site.GetPage (printf "/%s/%s" $taxonomy $tag) -}}
+              <a href="{{ .Permalink }}">{{ $tag | urlize }}</a>
+              {{- end -}}
+            {{- end -}}
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </section>
+      
+      {{ if eq .Section "posts" }}
+      {{ if eq .Site.Params.comments.enabled true }}
+      <div id="comments">
+        {{ partial "comments.html" $ }}
       </div>
       {{ end }}
-    </section>
-    {{ if eq .Section "posts" }}
-    {{ if eq .Site.Params.comments.enabled true }}
-    <div id="comments">
-      {{ partial "comments.html" $ }}
+      {{ end }}
     </div>
-    {{ end }}
-    {{ end }}
-  </div>
-</main>
+  </main>
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  {{ partial "head.html" . }}
+<body>
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+    <div class="content">
+      {{ partial "header.html" . }}
+
+      <article class="about-article">
+        <div class="about-body">
+          {{ with .Params.image }}
+            <img class="about-image" src="{{ . }}" alt="{{ $.Title }}">
+          {{ end }}
+
+          <div class="about-text">
+            <h1 class="about-title">{{ .Title }}</h1>
+            <div class="about-copy">{{ .Content }}</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <style>
+    /* Simple, single-column About page. Text wraps around the image on wide screens.
+       On narrow screens the image moves below the text for a clean stacked layout. */
+    .about-article { max-width: 820px; margin: 2.2rem auto; padding: 0 1rem; color: #111; }
+    .about-body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; font-size: 18px; line-height: 1.6; }
+
+    /* Image floats to the right on wide screens so the text wraps naturally. */
+    .about-image { float: right; width: 340px; max-width: 40%; margin: 0 0 1rem 1.25rem; border: 1px solid #e6e6e6; background: #fff; padding: 6px; box-shadow: 6px 8px 18px rgba(0,0,0,0.06); display: block; }
+
+    .about-title { margin: 0 0 1rem 0; font-size: 2rem; font-weight: 800; line-height: 1.05; }
+    .about-copy { color: #222; }
+
+    /* Ensure long lists and paragraphs keep readable measure */
+    .about-copy p { max-width: 70ch; }
+
+    /* Mobile: stack content and show image below the text (user requested image shown down of the text)
+       We switch to flex so we can reorder the elements visually while keeping semantic DOM order. */
+    @media (max-width: 900px) {
+      .about-image { float: none; width: 100%; max-width: 100%; margin: 1rem 0 0 0; }
+      .about-body { display: flex; flex-direction: column; }
+      .about-text { order: 1; }
+      .about-image { order: 2; }
+      .about-title { font-size: 1.6rem; }
+      .about-copy p { max-width: none; }
+    }
+
+    /* Small refinement for very wide screens */
+    @media (min-width: 1400px) {
+      .about-article { max-width: 980px; }
+      .about-image { width: 380px; }
+    }
+  </style>
+</body>
+</html>

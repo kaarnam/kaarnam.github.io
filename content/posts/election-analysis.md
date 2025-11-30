@@ -2,7 +2,7 @@
 author: "Karthika Namboothiri"
 title: "How winning local candidates fared against Trump/Harris"
 date: "2024-11-21"
-For: "Newsday"
+source: "Newsday"
 tags: 
 - elections
 - demographics

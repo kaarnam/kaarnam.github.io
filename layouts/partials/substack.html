@@ -1,0 +1,138 @@
+{{/*
+  Hugo partial: render Substack card.
+  Behavior:
+  - If `data/substack.json` exists (available as `site.Data.substack`), render the card at build time.
+  - Otherwise include the client-side placeholders and the `substack-client.js` fallback which will fetch the RSS at runtime.
+*/}}
+
+{{ $sub := site.Data.substack }}
+{{ if $sub }}
+  {{ $it := index $sub.items 0 }}
+  <div class="card substack-card">
+    <style>
+      /* Substack title link: hide underline by default, show colored underline on hover/focus */
+    /* Anchor wrapper should have no decoration; target the H2 directly for underline styling
+      to avoid browser inconsistencies when an anchor wraps a block element. Keep font-size
+      consistent with featured titles (1.1rem) so changing underline won't affect font. */
+    #substack-link { text-decoration: none !important; color: inherit; }
+    #substack-link h2 { display: inline; margin: 0; font-size: 1.1rem; font-weight: 800; text-decoration: none; }
+    #substack-link h2:hover, #substack-link h2:focus { text-decoration: underline ; text-decoration-color: #c6a0e8 ; text-decoration-thickness: 3px; text-underline-offset: 3px; }
+  /* Make subscribe control a purple pill with white input */
+  .subscribe-inline { display: inline-flex; align-items: center; border: none; border-radius: 8px; padding: 4px; background: #c6a0e8; line-height:1; }
+  .subscribe-inline .label { background: transparent; color: #fff; border: none; padding: 6px 10px; margin: 0; font-weight:700; font-size:13px; cursor: pointer; border-radius:6px; }
+  .subscribe-inline input[type="email"] { border: 1px solid rgba(0,0,0,0.08); border-radius: 4px; padding: 6px 8px; width: 150px; font-size: 13px; outline: none; background:#fff; color:#333; height:28px; margin-left:8px; }
+  .subscribe-inline input::placeholder { color: #cfcbd6; }
+  .subscribe-inline input:focus { box-shadow: 0 0 0 3px rgba(198,160,232,0.12); border-color: rgba(0,0,0,0.12); }
+    </style>
+    <h4>Murky spaces</h4>
+    <a id="substack-link" target="_blank" rel="noopener" href="{{ $it.link }}">
+      <h2 id="substack-title">{{ $it.title }}</h2>
+    </a>
+
+    <style>
+      /* add spacing between the Substack title and the hero image for breathing room */
+      #substack-title { margin-bottom: 0.9rem; display: inline-block; }
+      .substack-hero { margin-top: 1.5rem; }
+    </style>
+
+    <div class="substack-hero" style="height:220px; overflow:hidden; position:relative;" >
+      {{ $img := or $it.image $it.enclosure }}
+      {{ if $img }}
+        <img id="substack-image" alt="Latest post image" src="{{ $img }}" style="width:100%;height:100%;object-fit:cover;" />
+      {{ else }}
+        <img id="substack-image" alt="Latest post image" src="/js/img.png" style="width:100%;height:100%;object-fit:cover;" />
+      {{ end }}
+    </div>
+
+    <p id="substack-desc">{{ with $it.snippet }}{{ . | safeHTML }}{{ else }}{{ with $it.description }}{{ . | safeHTML }}{{ end }}{{ end }}</p>
+    <p id="substack-date">{{ $it.pubDate }}</p>
+    <div style="margin-top:1rem;">
+      <form action="https://murkyspaces.substack.com/subscribe" method="get" target="_blank" class="subscribe-inline" role="group" aria-label="Subscribe">
+        <button class="label" type="submit">Subscribe</button>
+        <input id="substack-email" name="email" type="email" placeholder="Your email" aria-label="Email" />
+      </form>
+    </div>
+    {{/* Keep client script for progressive enhancement: it will update the card if JS is available */}}
+    <script src="{{ "js/substack-client.js" | relURL }}" defer></script>
+  </div>
+{{ else }}
+  <!-- Fallback: client-side placeholders will be populated by static/js/substack-client.js -->
+  <div class="card substack-card">
+    <style>
+      /* Substack title link: hide underline by default, show colored underline on hover/focus */
+        #substack-link { text-decoration: none !important; color: inherit; }
+        /* Make the h2 inline so the underline hugs the title text and style the underline on the H2 itself */
+        #substack-link h2 { display: inline; margin: 0; font-size: 1.1rem; font-weight: 800; text-decoration: none; }
+        #substack-link h2:hover, #substack-link h2:focus { text-decoration: underline !important; text-decoration-color: #c6a0e8 !important; text-decoration-thickness: 3px; text-underline-offset: 3px; }
+        /* Subscribe label styling for fallback card */
+    .subscribe-inline .label { background: #c6a0e8; color: #111; border-radius: 4px; border: none; padding: 6px 10px; cursor: pointer; font-weight:700; }
+    .subscribe-inline .label:hover { opacity: .95; }
+    </style>
+    <h4>Murky spaces</h4>
+      <a id="substack-link" target="_blank" rel="noopener">
+        <h2 id="substack-title"></h2>
+      </a>
+
+
+    <div class="substack-hero" style="height:220px; overflow:hidden; position:relative;" >
+      <!-- hide image until loaded to avoid broken-image placeholder -->
+      <!-- data-default-src can be changed to any site image to use as a fallback when the post has no image -->
+      <!-- the file `static/js/img.png` is served at `/js/img.png` in Hugo -- use that URL here -->
+      <img id="substack-image" alt="Latest post image" data-default-src="/js/img.png" style="width:100%;height:100%;object-fit:cover;display:none;" />
+    </div>
+
+    <p id="substack-desc"></p>
+    <p id="substack-date"></p>
+    <div style="margin-top:1rem;">
+      <form action="https://murkyspaces.substack.com/subscribe" method="get" target="_blank" class="subscribe-inline" role="group" aria-label="Subscribe">
+        <button class="label" type="submit">Subscribe</button>
+        <input id="substack-email" name="email" type="email" placeholder="Your email" aria-label="Email" />
+      </form>
+    </div>
+
+    <!-- Client-side fetcher (always used) -->
+    <script>
+      // Default renderer: maps the entity fields into your placeholders.
+      // The client will call window.renderSubstack(entity) if it exists,
+      // and also dispatches the 'substack:loaded' event.
+      window.renderSubstack = function(entity) {
+        if (!entity) return;
+        const link = document.getElementById('substack-link');
+        const title = document.getElementById('substack-title');
+        if (link) link.href = entity.link || '#';
+        if (title) title.textContent = entity.title || '';
+
+        const img = document.getElementById('substack-image');
+        if (img) {
+          const defaultSrc = img.getAttribute && img.getAttribute('data-default-src');
+          if (entity.image) {
+            img.src = entity.image;
+            img.style.display = '';
+            delete img.dataset._fallback;
+          } else if (defaultSrc) {
+            // show configured fallback image when the post has no image
+            img.src = defaultSrc;
+            img.style.display = '';
+            img.dataset._fallback = 'true';
+          } else {
+            img.style.display = 'none';
+            delete img.dataset._fallback;
+          }
+        }
+
+        const desc = document.getElementById('substack-desc');
+        if (desc) desc.innerHTML = entity.description || '';
+
+        const date = document.getElementById('substack-date');
+        if (date) date.textContent = entity.pubDate || '';
+      };
+
+      // Also listen for the event as a fallback
+      document.addEventListener('substack:loaded', function (e) {
+        try { window.renderSubstack(e.detail); } catch (err) { /* ignore */ }
+      });
+    </script>
+    <script src="{{ "js/substack-client.js" | relURL }}" defer></script>
+  </div>
+{{ end }}
+

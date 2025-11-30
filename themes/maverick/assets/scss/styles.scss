@@ -211,6 +211,51 @@ ul, ol {
     // text-align: justify;
 }
 
+/* Hover underline for article headlines site-wide */
+.post-main a:hover,
+.post h3 a:hover,
+.post-title:hover,
+.overlay-title:hover,
+.post-main h3:hover {
+    text-decoration: underline;
+    text-decoration-color: #ede43a;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+}
+
+/* Murky spaces (substack) title underline color */
+
+/* Murky spaces (substack) title underline color */
+.substack-title:hover {
+    text-decoration: underline;
+    text-decoration-color: #c6a0e8;
+}
+
+/* Right-column Murky spaces H2 underline (purple) */
+.right h2:hover,
+.right .substack-title:hover {
+    text-decoration: underline;
+    text-decoration-color: #c6a0e8;
+    text-underline-offset: 3px;
+}
+
+/* Ensure the right-column H2 (Murky spaces headline) uses purple underline on hover */
+.right h2:hover {
+    text-decoration: underline;
+    text-decoration-color: #c6a0e8;
+}
+
+/* Thumbnail: show GIF on hover if present */
+.post-thumb { position: relative; overflow: hidden; }
+.post-thumb img.static { display: block; }
+.post-thumb img.gif { display: none; position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; }
+.post-thumb:hover img.static { display: none; }
+.post-thumb:hover img.gif { display: block; }
+
+/* Article page side images with shadow */
+.article-side-images { display:flex; gap:1rem; margin:1rem 0; }
+.article-side-images img { width:48%; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+
 h2.post {
     padding-top: .5rem;
 }

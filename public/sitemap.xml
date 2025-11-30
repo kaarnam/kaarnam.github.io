@@ -3,23 +3,57 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2022-03-15T00:00:00+00:00</lastmod>
+    <lastmod>2025-03-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/hugo/</loc>
-    <lastmod>2022-03-15T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/tags/demographics/</loc>
+    <lastmod>2025-03-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/interactive-graphic/</loc>
+    <lastmod>2025-03-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/crash-map/</loc>
+    <lastmod>2025-03-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2022-03-15T00:00:00+00:00</lastmod>
+    <lastmod>2025-03-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/sample/</loc>
-    <lastmod>2022-03-15T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/tags/spatial-analysis/</loc>
+    <lastmod>2025-03-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-03-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/elections/</loc>
+    <lastmod>2024-11-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/excel/</loc>
+    <lastmod>2024-11-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/election-analysis/</loc>
+    <lastmod>2024-11-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/python/</loc>
+    <lastmod>2024-11-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/environment/</loc>
+    <lastmod>2023-01-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/sky-forests/</loc>
+    <lastmod>2023-01-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/adobe-illustrator/</loc>
+    <lastmod>2022-03-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/qgis/</loc>
     <lastmod>2022-03-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/tree-cover2/</loc>
     <lastmod>2022-03-15T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/about/</loc>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/pages/</loc>
   </url>
 </urlset>

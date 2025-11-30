@@ -6,26 +6,135 @@
   <main id="main">
     <div class="content">
       {{ partial "header.html" . }}
-      {{ .Content }}
 
-      {{ $posts := where .Site.RegularPages "Section" "posts" }}
-      {{ if gt (len $posts) 0 }}
-        <h2>Selected work</h2>
-      <section>
-          {{ range first 10 ($posts.ByDate.Reverse) }}
-            <p>
-              <time class="g time" datetime="{{ dateFormat "2006-01-02" .Date }}">
-                {{ dateFormat "2006-01-02" .Date }}
-              </time>
-              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-            </p>
-            <p>{{ if .Params.image }}
-          <img src="{{ .Params.image }}" alt="Post image" style="float: right; max-width: 300px; margin-left: 16px;">
-        {{ end }}
-        {{ .Summary }}</p>
+      <!-- Home grid: left column for posts, right column for Substack / sidebar -->
+  {{ .Content }}
+
+  <style>
+        /* Homepage-specific styles to match provided design mockup */
+        .content { max-width: 980px; }
+  .home-grid { display: flex; gap: 3rem; align-items: stretch; }
+        .home-grid .left { flex: 1 1 68%; }
+  .home-grid .right { flex: 0 0 28%; border-left: 1px solid #dedede; padding-left: 1.6rem; display:flex; flex-direction:column; }
+        .home-grid .right .card { border: 0; padding: 0; background: transparent; }
+
+  /* Featured heading - match Substack card title sizing */
+  h2.featured { font-weight:800; text-transform:uppercase; letter-spacing: .03em; margin: 0 0 1rem 0; font-size:1.1rem; line-height:1.25; }
+
+    /* Post block: title above, source, summary with right-aligned thumbnail box */
+      .post-list { margin: 0; padding: 0; }
+    /* Use grid so the title can span both columns while the summary remains in a narrow left column
+       and the thumbnail stays in the right column aligned to the top of the summary. To align the
+       thumbnail with the body text (summary) instead of the subhead/source we promote the
+       children of .post-main to the grid using `display: contents` and place the source, summary
+       and tags in separate grid rows. The thumbnail is placed in the same row as the summary. */
+    .post-item { display: grid; grid-template-columns: 1fr 280px; grid-template-rows: auto auto auto auto; gap: 1rem; padding: 1.5rem 0; align-items: start; }
+      .post-item + .post-item { border-top: 1px solid #eee; }
+
+  /* Title spans both columns (becomes wider) */
+  /* increase bottom margin so the title has more vertical space from the image */
+  .post-title { grid-column: 1 / 3; grid-row: 1; margin: 0 0 0.6rem 0; }
+    .post-title a { text-decoration: none; color: inherit; display: inline-block; font-size: 1.3rem; font-weight: 800; }
+    /* Keep the title on one line on desktop, clamp with ellipsis if it's too long */
+    .post-title a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .post-title a:hover { text-decoration: underline; text-decoration-color: #ede43a; text-decoration-thickness: 3px; text-underline-offset: 3px; }
+
+    /* Promote the children of .post-main so they become direct grid items. This lets us place
+       the source in its own row and place the paragraph (summary) in the row where the
+       thumbnail will align. */
+    .post-main { display: contents; }
+    .post-item .source { grid-column: 1 / 2; grid-row: 2; font-weight:700; margin-bottom: .35rem; }
+    .post-item p { grid-column: 1 / 2; grid-row: 3; margin: 0 0 .6rem 0; color: #222; line-height: 1.4; }
+    .post-item .tags { grid-column: 1 / 2; grid-row: 4; color: #444; margin-top: .6rem; font-size: .95rem; }
+
+   /* Thumbnail: keep consistent size and align with the summary (row 3). Use cover so images fill the box.
+       GIF-on-hover: the static image shows by default and the optional GIF (if provided) appears on hover. */
+   .post-thumb { grid-column: 2 / 3; grid-row: 3; width: 280px; max-width: 280px; border: 1px solid #ccc; background:#fff; position:relative; align-self: start; overflow:hidden; aspect-ratio: 16/9; margin-top:0.5rem; }
+  .post-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .post-thumb img.gif { position:absolute; inset:0; display:none; width:100%; height:100%; object-fit:cover; }
+  .post-thumb:hover img.static { display:none; }
+  .post-thumb:hover img.gif { display:block; }
+  /* Also trigger GIF when hovering the article (including the title) so title hover will switch the image */
+  .post-item:hover .post-thumb img.static { display:none; }
+  .post-item:hover .post-thumb img.gif { display:block; }
+  .post-thumb .overlay-title { position:absolute; left:12px; top:12px; background: rgba(255,255,255,0.95); padding:6px 10px; font-weight:800; font-size:1rem; color:#000; text-decoration:none; border-radius:2px; }
+  /* keep overlay title underline consistent with featured titles */
+  .post-thumb .overlay-title:hover { text-decoration: underline; text-decoration-color: #ede43a; text-decoration-thickness: 3px; text-underline-offset: 3px; }
+
+        /* Sidebar (right column) styles matching mockup */
+        .right h4 { margin: 0 0 .75rem 0; font-weight:700; }
+        .right h2 { margin: 0 0 1rem 0; font-size: 1.25rem; font-weight:800; }
+        .substack-hero { width: 100%; height: 180px; background: #fff; border: 1px solid #ccc; display:block; margin-bottom: 1rem; }
+        .right p { color: #222; font-size: .95rem; line-height: 1.4; }
+
+  /* Subscribe control: compact label on left plus small input on right (matches mockup) */
+  /* Make the subscribe control visually a purple pill with a white input on the right */
+  .subscribe-inline { display: inline-flex; align-items: center; border: none; border-radius: 8px; padding: 4px; background: #c6a0e8; line-height:1; }
+  .subscribe-inline .label { background: transparent; color: #fff; border: none; padding: 6px 10px; margin: 0; font-weight:700; font-size:13px; cursor: pointer; border-radius:6px; }
+  .subscribe-inline .label:focus { outline: none; }
+  .subscribe-inline input[type="email"] { border: 1px solid rgba(0,0,0,0.08); border-radius: 4px; padding: 6px 8px; width: 150px; font-size: 13px; outline: none; background:#fff; color:#333; height:28px; margin-left:8px; }
+  .subscribe-inline input::placeholder { color: #cfcbd6; }
+  .subscribe-inline input:focus { box-shadow: 0 0 0 3px rgba(198,160,232,0.12); border-color: rgba(0,0,0,0.12); }
+
+        @media (max-width: 900px) {
+          .home-grid { flex-direction: column; }
+          .home-grid .right { border-left: none; padding-left: 0; }
+          /* stack post items on narrow screens: keep distinct rows for title, source, summary and tags */
+          .post-item { grid-template-columns: 1fr; grid-template-rows: auto auto auto auto; }
+          .post-title a { white-space: normal; }
+          /* keep a bit of space between title and thumbnail on mobile too */
+          .post-thumb { width:100%; height:auto; max-width:100%; grid-column: 1 / 2; grid-row: 4; aspect-ratio: auto; margin-top:0.6rem; }
+        }
+      /* ===== Overrides to reduce vertical space only inside the featured column ===== */
+      /* tighten the grid gap so the title sits closer to source/summary */
+      .left .post-item { gap: 0rem; }
+      /* reduce the title's bottom margin only in featured area */
+      .left .post-title { margin: 0 0 0rem 0; }
+      /* slightly reduce the thumbnail top offset so it lines up tighter with summary */
+      .left .post-thumb { margin-top: 0rem; }
+
+      </style>
+
+      <div class="home-grid">
+        <div class="left">
+          {{ $posts := where .Site.RegularPages "Section" "posts" }}
+          {{ if gt (len $posts) 0 }}
+            <h2 class="featured">FEATURED WORK</h2>
+            <section class="post-list">
+              {{ range first 10 ($posts.ByDate.Reverse) }}
+                <article class="post-item">
+                  <h3 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+
+                  <div class="post-main">
+                    {{ $source := or .Params.source .Site.Params.newsOrganization "Newsday" }}
+                    <div class="source">{{ $source }}</div>
+                    <p>{{ .Summary }}</p>
+                    {{ with .Params.tags }}<div class="tags">Tags: {{ delimit . ", " }}</div>{{ end }}
+                  </div>
+
+                  <div class="post-thumb">
+                    {{ if .Params.image }}
+                      <!-- static image shown by default -->
+                      <img class="static" src="{{ .Params.image }}" alt="{{ .Title }}">
+                      <!-- optional GIF to show on hover if provided in front matter as `gif` -->
+                      {{ with .Params.gif }}
+                        <img class="gif" src="{{ . }}" alt="{{ $.Title }} gif">
+                      {{ end }}
+                    {{ else }}
+                      <!-- empty placeholder box -->
+                    {{ end }}
+                  </div>
+                </article>
+              {{ end }}
+            </section>
           {{ end }}
-        </section>
-      {{ end }}
+        </div>
+
+        <aside class="right">
+          {{ partial "substack.html" . }}
+        </aside>
+      </div>
+
     </div>
   </main>
 </body>
