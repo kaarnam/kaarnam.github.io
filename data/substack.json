@@ -1,11 +1,11 @@
 {
   "items": [
     {
-      "title": "Sample post title (build-time data)",
-      "link": "https://murkyspaces.substack.com/p/sample-post", 
-      "pubDate": "2025-11-29",
-      "snippet": "This is a build-time sample of the latest Substack post. Replace `data/substack.json` with a fresh copy of your feed or a small script that updates it.",
-      "image": "/js/img.png"
+      "title": "Attending Carto’s Spatial Data Science Conference in NYC: Data journalist edition",
+      "link": "https://murkyspaces.substack.com/p/attending-cartos-spatial-data-science", 
+      "pubDate": "Thu, 23 Oct 2025 17:01:52 GMT",
+      "snippet": "What does a data journalist do at a mapping conference?",
+      "image": "https://substackcdn.com/image/fetch/$s_!zRiJ!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3490ca95-d052-480f-836d-36350a6379b5_4032x3024.jpeg"
     }
   ]
 }
