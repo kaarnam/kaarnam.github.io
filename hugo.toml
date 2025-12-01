@@ -11,6 +11,6 @@ theme = 'maverick'
     weight = -110
   [[menu.main]]
     identifier = "posts"
-    name = "Published work"
+    name = "All published work"
     url = "/posts/"
     weight = -200
