@@ -2,73 +2,73 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Karthika Namboothiri</title>
-    <link>https://kaarnam.com/tags/</link>
+    <link>http://localhost:64640/tags/</link>
     <description>Recent content in Tags on Karthika Namboothiri</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 27 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kaarnam.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:64640/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Demographics</title>
-      <link>https://kaarnam.com/tags/demographics/</link>
+      <link>http://localhost:64640/tags/demographics/</link>
       <pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://kaarnam.com/tags/demographics/</guid>
+      <guid>http://localhost:64640/tags/demographics/</guid>
       <description></description>
     </item>
     <item>
       <title>Interactive Graphic</title>
-      <link>https://kaarnam.com/tags/interactive-graphic/</link>
+      <link>http://localhost:64640/tags/interactive-graphic/</link>
       <pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://kaarnam.com/tags/interactive-graphic/</guid>
+      <guid>http://localhost:64640/tags/interactive-graphic/</guid>
       <description></description>
     </item>
     <item>
       <title>Spatial Analysis</title>
-      <link>https://kaarnam.com/tags/spatial-analysis/</link>
+      <link>http://localhost:64640/tags/spatial-analysis/</link>
       <pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://kaarnam.com/tags/spatial-analysis/</guid>
+      <guid>http://localhost:64640/tags/spatial-analysis/</guid>
       <description></description>
     </item>
     <item>
       <title>Elections</title>
-      <link>https://kaarnam.com/tags/elections/</link>
+      <link>http://localhost:64640/tags/elections/</link>
       <pubDate>Thu, 21 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://kaarnam.com/tags/elections/</guid>
+      <guid>http://localhost:64640/tags/elections/</guid>
       <description></description>
     </item>
     <item>
       <title>Excel</title>
-      <link>https://kaarnam.com/tags/excel/</link>
+      <link>http://localhost:64640/tags/excel/</link>
       <pubDate>Thu, 21 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://kaarnam.com/tags/excel/</guid>
+      <guid>http://localhost:64640/tags/excel/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>https://kaarnam.com/tags/python/</link>
+      <link>http://localhost:64640/tags/python/</link>
       <pubDate>Thu, 21 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://kaarnam.com/tags/python/</guid>
+      <guid>http://localhost:64640/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Environment</title>
-      <link>https://kaarnam.com/tags/environment/</link>
+      <link>http://localhost:64640/tags/environment/</link>
       <pubDate>Sun, 22 Jan 2023 00:00:00 +0000</pubDate>
-      <guid>https://kaarnam.com/tags/environment/</guid>
+      <guid>http://localhost:64640/tags/environment/</guid>
       <description></description>
     </item>
     <item>
       <title>Adobe Illustrator</title>
-      <link>https://kaarnam.com/tags/adobe-illustrator/</link>
+      <link>http://localhost:64640/tags/adobe-illustrator/</link>
       <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>https://kaarnam.com/tags/adobe-illustrator/</guid>
+      <guid>http://localhost:64640/tags/adobe-illustrator/</guid>
       <description></description>
     </item>
     <item>
       <title>QGIS</title>
-      <link>https://kaarnam.com/tags/qgis/</link>
+      <link>http://localhost:64640/tags/qgis/</link>
       <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>https://kaarnam.com/tags/qgis/</guid>
+      <guid>http://localhost:64640/tags/qgis/</guid>
       <description></description>
     </item>
   </channel>
