@@ -7,9 +7,17 @@
 {{ $feedURL := "https://murkyspaces.substack.com/feed" }}
 {{ $fallbackImage := "/js/img.png" }}
 
-{{ $res := resources.GetRemote $feedURL }}
+{{/* Attempt to fetch remote resource with error handling */}}
+{{ $res := "" }}
+{{ $hasError := false }}
+{{ $fetchedRes := resources.GetRemote $feedURL }}
+{{ if not $fetchedRes }}
+  {{ $hasError = true }}
+{{ else }}
+  {{ $res = $fetchedRes }}
+{{ end }}
 
-{{ if $res }}
+{{ if and $res (not $hasError) }}
   {{ $content := $res.Content }}
   
   {{/* Find items/entries */}}
