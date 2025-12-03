@@ -7,20 +7,22 @@
 {{ $feedURL := "https://murkyspaces.substack.com/feed" }}
 {{ $fallbackImage := "/js/img.png" }}
 
-{{/* Fetch remote resource - will use fallback if fetch fails or returns forbidden */}}
+{{/* 
+  Remote fetch disabled because Substack blocks GitHub Actions with Forbidden error.
+  To re-enable: uncomment the fetch code and remove the $fetchSuccess = false line.
+  
+  Uncomment to enable fetch:
+  {{ $resource := resources.GetRemote $feedURL }}
+  {{ if $resource }}
+    {{ with $resource.Content }}
+      {{ $content = . }}
+      {{ $fetchSuccess = true }}
+    {{ end }}
+  {{ end }}
+*/}}
+
 {{ $content := "" }}
 {{ $fetchSuccess := false }}
-
-{{/* Store the resource without immediately accessing .Content */}}
-{{ $resource := resources.GetRemote $feedURL }}
-
-{{/* Only try to access content if resource exists and has Data (indicates success) */}}
-{{ if $resource }}
-  {{ if $resource.Data }}
-    {{ $content = $resource.Content }}
-    {{ $fetchSuccess = true }}
-  {{ end }}
-{{ end }}
 
 {{ if $fetchSuccess }}
   
