@@ -7,18 +7,18 @@
 {{ $feedURL := "https://murkyspaces.substack.com/feed" }}
 {{ $fallbackImage := "/js/img.png" }}
 
-{{/* Attempt to fetch remote resource with error handling */}}
-{{ $res := "" }}
-{{ $hasError := false }}
-{{ $fetchedRes := resources.GetRemote $feedURL }}
-{{ if not $fetchedRes }}
-  {{ $hasError = true }}
-{{ else }}
-  {{ $res = $fetchedRes }}
+{{/* Attempt to fetch remote resource with error handling compatible with older Hugo versions */}}
+{{ $content := "" }}
+{{ $fetchSuccess := false }}
+
+{{ with resources.GetRemote $feedURL }}
+  {{ with .Content }}
+    {{ $content = . }}
+    {{ $fetchSuccess = true }}
+  {{ end }}
 {{ end }}
 
-{{ if and $res (not $hasError) }}
-  {{ $content := $res.Content }}
+{{ if $fetchSuccess }}
   
   {{/* Find items/entries */}}
   {{ $items := findRE `(?s)<item>.*?</item>` $content }}
