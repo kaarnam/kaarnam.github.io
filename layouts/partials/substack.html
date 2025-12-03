@@ -7,13 +7,17 @@
 {{ $feedURL := "https://murkyspaces.substack.com/feed" }}
 {{ $fallbackImage := "/js/img.png" }}
 
-{{/* Attempt to fetch remote resource with error handling compatible with older Hugo versions */}}
+{{/* Fetch remote resource - will use fallback if fetch fails or returns forbidden */}}
 {{ $content := "" }}
 {{ $fetchSuccess := false }}
 
-{{ with resources.GetRemote $feedURL }}
-  {{ with .Content }}
-    {{ $content = . }}
+{{/* Store the resource without immediately accessing .Content */}}
+{{ $resource := resources.GetRemote $feedURL }}
+
+{{/* Only try to access content if resource exists and has Data (indicates success) */}}
+{{ if $resource }}
+  {{ if $resource.Data }}
+    {{ $content = $resource.Content }}
     {{ $fetchSuccess = true }}
   {{ end }}
 {{ end }}

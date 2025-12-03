@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on Karthika Namboothiri</title>
-    <link>http://localhost:1313/pages/</link>
+    <link>https://kaarnam.com/pages/</link>
     <description>Recent content in Pages on Karthika Namboothiri</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/pages/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kaarnam.com/pages/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://kaarnam.com/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
+      <guid>https://kaarnam.com/about/</guid>
       <description>&lt;p&gt;Karthika (pronounced kaar-tik-aa) Namboothiri is a data and graphics journalist based in New York City. She has previously worked at Reuters and The San Diego Union-Tribune, and is now a data journalist and part of the editorial board at Newsday. Namboothiri holds a Masters of Science degree in Data Journalism from Columbia University, with a specialization in Mapping.&lt;/p&gt;&#xA;&lt;p&gt;Originally from Bangalore, India, Namboothiri’s work incorporates engaging storytelling techniques with complex data analysis. Her work at The San Diego Union-Tribune ranged from investigating wildfire mitigation activities in Southern California’s state forests to building print and web graphics for a video production on the rise in migrant deaths crossing the U.S.-Mexico border wall. The latter won second place in the California Journalism Awards in 2022 and was nominated for a regional Emmy.&lt;/p&gt;</description>
     </item>
   </channel>
