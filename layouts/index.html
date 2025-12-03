@@ -48,13 +48,14 @@
     .post-item .tags { grid-column: 1 / 2; grid-row: 4; color: #444; margin-top: .6rem; font-size: .95rem; }
 
    /* Thumbnail: keep consistent size and align with the summary (row 3). Use cover so images fill the box. */
-   .post-thumb { grid-column: 2 / 3; grid-row: 3; width: 280px; max-width: 280px; border: 1px solid #ccc; background:#fff; position:relative; align-self: start; overflow:hidden; aspect-ratio: 16/9; margin-top:0.5rem; }
+   .post-thumb { grid-column: 2 / 3; grid-row: 3; width: 280px; max-width: 280px; border: 1px solid #ccc; background:#fff; position:relative; align-self: start; overflow:hidden; aspect-ratio: 16/9; margin-top:0.5rem; pointer-events: none; }
   .post-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
   
-  /* GIF hover: static image by default, GIF appears on top when hovering article */
-  .post-thumb img.static { position: relative; z-index: 1; }
-  .post-thumb img.gif { position: absolute; inset: 0; z-index: 2; opacity: 0; transition: opacity 0.2s ease; }
-  .post-item:hover .post-thumb img.gif { opacity: 1; }
+  /* GIF hover: hide GIF by default, show on article hover (not image hover) */
+  .post-thumb img.static { display: block; }
+  .post-thumb img.gif { position: absolute; inset: 0; display: none; }
+  .post-item:hover .post-thumb img.gif { display: block; }
+  .post-item:hover .post-thumb img.static { display: none; }
   
   .post-thumb .overlay-title { position:absolute; left:12px; top:12px; background: rgba(255,255,255,0.95); padding:6px 10px; font-weight:800; font-size:1rem; color:#000; text-decoration:none; border-radius:2px; }
   /* keep overlay title underline consistent with featured titles */
