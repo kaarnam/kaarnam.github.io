@@ -52,11 +52,14 @@
    .post-thumb { grid-column: 2 / 3; grid-row: 3; width: 280px; max-width: 280px; border: 1px solid #ccc; background:#fff; position:relative; align-self: start; overflow:hidden; aspect-ratio: 16/9; margin-top:0.5rem; }
   .post-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
   .post-thumb img.gif { position:absolute; inset:0; display:none; width:100%; height:100%; object-fit:cover; }
-  .post-thumb:hover img.static { display:none; }
-  .post-thumb:hover img.gif { display:block; }
+  /* Only hide the static image on hover when a GIF actually exists. We add the
+    `has-gif` class to the container when a GIF is present so posts without GIFs
+    won't hide their static thumbnail on hover/tap. */
+  .post-thumb.has-gif:hover img.static { display:none; }
+  .post-thumb.has-gif:hover img.gif { display:block; }
   /* Also trigger GIF when hovering the article (including the title) so title hover will switch the image */
-  .post-item:hover .post-thumb img.static { display:none; }
-  .post-item:hover .post-thumb img.gif { display:block; }
+  .post-item:hover .post-thumb.has-gif img.static { display:none; }
+  .post-item:hover .post-thumb.has-gif img.gif { display:block; }
   .post-thumb .overlay-title { position:absolute; left:12px; top:12px; background: rgba(255,255,255,0.95); padding:6px 10px; font-weight:800; font-size:1rem; color:#000; text-decoration:none; border-radius:2px; }
   /* keep overlay title underline consistent with featured titles */
   .post-thumb .overlay-title:hover { text-decoration: underline; text-decoration-color: #ede43a; text-decoration-thickness: 3px; text-underline-offset: 3px; }
@@ -83,7 +86,10 @@
           .post-item { grid-template-columns: 1fr; grid-template-rows: auto auto auto auto; }
           .post-title a { white-space: normal; }
           /* keep a bit of space between title and thumbnail on mobile too */
-          .post-thumb { width:100%; height:auto; max-width:100%; grid-column: 1 / 2; grid-row: 4; aspect-ratio: auto; margin-top:0.6rem; }
+          /* Keep a fixed aspect-ratio on mobile so the thumbnail area doesn't collapse
+             when the static image is hidden (the GIF is absolutely positioned). If the
+             container loses height the absolutely-positioned GIF will not be visible. */
+          .post-thumb { width:100%; height:auto; max-width:100%; grid-column: 1 / 2; grid-row: 4; aspect-ratio: 16/9; margin-top:0.6rem; }
         }
       /* ===== Overrides to reduce vertical space only inside the featured column ===== */
       /* tighten the grid gap so the title sits closer to source/summary */
@@ -112,7 +118,8 @@
                     {{ with .Params.tags }}<div class="tags">Tags: {{ delimit . ", " }}</div>{{ end }}
                   </div>
 
-                  <div class="post-thumb">
+                  {{ $gif := .Params.gif }}
+                  <div class="post-thumb{{ if $gif }} has-gif{{ end }}">
                     {{ if .Params.image }}
                       <!-- static image shown by default -->
                       <img class="static" src="{{ .Params.image }}" alt="{{ .Title }}">
