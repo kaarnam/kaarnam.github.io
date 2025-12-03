@@ -3,6 +3,10 @@ languageCode = 'en-us'
 title = 'Karthika Namboothiri'
 theme = 'maverick'
 
+[security]
+  [security.funcs]
+    getenv = ['^HUGO_', '^CI$', '^GITHUB_PAGES$']
+
 [menu]
   [[menu.main]]
     identifier = "about"

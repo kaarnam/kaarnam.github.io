@@ -10,12 +10,14 @@
 {{ $content := "" }}
 {{ $fetchSuccess := false }}
 
-{{/* Attempt fetch - GitHub Actions workflow has --ignoreErrors flag to handle failures */}}
-{{ $res := resources.GetRemote $feedURL }}
-{{ if $res }}
-  {{ with $res.Content }}
-    {{ $content = . }}
-    {{ $fetchSuccess = true }}
+{{/* Only attempt fetch if NOT in GitHub Pages environment (where Substack blocks requests) */}}
+{{ if not (getenv "GITHUB_PAGES") }}
+  {{ $res := resources.GetRemote $feedURL }}
+  {{ if $res }}
+    {{ with $res.Content }}
+      {{ $content = . }}
+      {{ $fetchSuccess = true }}
+    {{ end }}
   {{ end }}
 {{ end }}
 
