@@ -119,13 +119,13 @@
                   </div>
 
                   {{ $gif := .Params.gif }}
-                  <div class="post-thumb{{ if $gif }} has-gif{{ end }}">
+                  <div class="post-thumb{{ if and $gif (ne $gif "") }} has-gif{{ end }}">
                     {{ if .Params.image }}
                       <!-- static image shown by default -->
                       <img class="static" src="{{ .Params.image }}" alt="{{ .Title }}">
                       <!-- optional GIF to show on hover if provided in front matter as `gif` -->
-                      {{ with .Params.gif }}
-                        <img class="gif" src="{{ . }}" alt="{{ $.Title }} gif">
+                      {{ if and $gif (ne $gif "") }}
+                        <img class="gif" src="{{ $gif }}" alt="{{ .Title }} gif">
                       {{ end }}
                     {{ else }}
                       <!-- empty placeholder box -->
