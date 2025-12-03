@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Karthika Namboothiri</title>
-    <link>https://kaarnam.com/tags/python/</link>
+    <link>http://localhost:1313/tags/python/</link>
     <description>Recent content in Python on Karthika Namboothiri</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 21 Nov 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kaarnam.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How winning local candidates fared against Trump/Harris</title>
-      <link>https://kaarnam.com/posts/election-analysis/</link>
+      <link>http://localhost:1313/posts/election-analysis/</link>
       <pubDate>Thu, 21 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://kaarnam.com/posts/election-analysis/</guid>
+      <guid>http://localhost:1313/posts/election-analysis/</guid>
       <description>&lt;p&gt;Post-election analysis of local candidates&amp;rsquo; results in State Assembly, State Senate and Congressional districts against presidential candidates within the same district. Analysis done on data obtained by Newsday for Nassau and Suffolk counties using Python and Excel. Graphics built on Datawrapper.&lt;/p&gt;</description>
     </item>
   </channel>

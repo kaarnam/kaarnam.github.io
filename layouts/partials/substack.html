@@ -7,22 +7,17 @@
 {{ $feedURL := "https://murkyspaces.substack.com/feed" }}
 {{ $fallbackImage := "/js/img.png" }}
 
-{{/* 
-  Remote fetch disabled because Substack blocks GitHub Actions with Forbidden error.
-  To re-enable: uncomment the fetch code and remove the $fetchSuccess = false line.
-  
-  Uncomment to enable fetch:
-  {{ $resource := resources.GetRemote $feedURL }}
-  {{ if $resource }}
-    {{ with $resource.Content }}
-      {{ $content = . }}
-      {{ $fetchSuccess = true }}
-    {{ end }}
-  {{ end }}
-*/}}
-
 {{ $content := "" }}
 {{ $fetchSuccess := false }}
+
+{{/* Attempt fetch - GitHub Actions workflow has --ignoreErrors flag to handle failures */}}
+{{ $res := resources.GetRemote $feedURL }}
+{{ if $res }}
+  {{ with $res.Content }}
+    {{ $content = . }}
+    {{ $fetchSuccess = true }}
+  {{ end }}
+{{ end }}
 
 {{ if $fetchSuccess }}
   
