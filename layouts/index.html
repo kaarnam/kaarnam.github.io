@@ -54,8 +54,9 @@
   /* GIF hover: hide GIF by default, show on article hover (not image hover) */
   .post-thumb img.static { display: block; }
   .post-thumb img.gif { position: absolute; inset: 0; display: none; }
-  .post-item:hover .post-thumb img.gif { display: block; }
-  .post-item:hover .post-thumb img.static { display: none; }
+  /* Only swap images if the thumbnail has a GIF (has-gif class) */
+  .post-item:hover .post-thumb.has-gif img.gif { display: block; }
+  .post-item:hover .post-thumb.has-gif img.static { display: none; }
   
   .post-thumb .overlay-title { position:absolute; left:12px; top:12px; background: rgba(255,255,255,0.95); padding:6px 10px; font-weight:800; font-size:1rem; color:#000; text-decoration:none; border-radius:2px; }
   /* keep overlay title underline consistent with featured titles */
@@ -111,7 +112,7 @@
                     {{ with .Params.tags }}<div class="tags">Tags: {{ delimit . ", " }}</div>{{ end }}
                   </div>
 
-                  <div class="post-thumb">
+                  <div class="post-thumb{{ if .Params.gif }} has-gif{{ end }}">
                     {{ if .Params.image }}
                       <img class="static" src="{{ .Params.image }}" alt="{{ .Title }}">
                       {{ if .Params.gif }}

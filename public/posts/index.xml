@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Karthika Namboothiri</title>
-    <link>http://localhost:50907/posts/</link>
+    <link>https://kaarnam.com/posts/</link>
     <description>Recent content in Posts on Karthika Namboothiri</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 27 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:50907/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kaarnam.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Long Island crash map</title>
-      <link>http://localhost:50907/posts/crash-map/</link>
+      <link>https://kaarnam.com/posts/crash-map/</link>
       <pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:50907/posts/crash-map/</guid>
+      <guid>https://kaarnam.com/posts/crash-map/</guid>
       <description>&lt;p&gt;An interactive map showing every motor vehicle crash that took place on Long Island roads between 2022 and 2025, color-coded to indicate fatalities and serious injuries. The map was built as part of Newsday&amp;rsquo;s year-long Dangerous Roads series and data was obtained by Newsday from the New York State Dept. of Transportation. This map was the top story of the year in terms of user metrics and reader interactions.&lt;/p&gt;</description>
     </item>
     <item>
       <title>How winning local candidates fared against Trump/Harris</title>
-      <link>http://localhost:50907/posts/election-analysis/</link>
+      <link>https://kaarnam.com/posts/election-analysis/</link>
       <pubDate>Thu, 21 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:50907/posts/election-analysis/</guid>
+      <guid>https://kaarnam.com/posts/election-analysis/</guid>
       <description>&lt;p&gt;Post-election analysis of local candidates&amp;rsquo; results in State Assembly, State Senate and Congressional districts against presidential candidates within the same district. Analysis done on data obtained by Newsday for Nassau and Suffolk counties using Python and Excel. Graphics built on Datawrapper.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Will Southern California embrace logging of its ‘sky island’ forests?</title>
-      <link>http://localhost:50907/posts/sky-forests/</link>
+      <link>https://kaarnam.com/posts/sky-forests/</link>
       <pubDate>Sun, 22 Jan 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:50907/posts/sky-forests/</guid>
+      <guid>https://kaarnam.com/posts/sky-forests/</guid>
       <description>&lt;p&gt;Analysis of two decades of forest activity data showed that the U.S. Forest Service on average completed only 40 percent of targets required for wildfire mitigation in the Southern Californian region. Spatial analysis done using QGIS anf Python. Graphics made using Adobe Illustrator.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Tree cover analysis using satellite data for Long Island</title>
-      <link>http://localhost:50907/posts/tree-cover2/</link>
+      <link>https://kaarnam.com/posts/tree-cover2/</link>
       <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:50907/posts/tree-cover2/</guid>
+      <guid>https://kaarnam.com/posts/tree-cover2/</guid>
       <description>&lt;p&gt;A detailed analysis of tree cover of the U.S. Geological Survey&amp;rsquo;s satellite data for every census tract on Long Island. Methodology involved use of zonal statistics and analysis shows that tree cover is disproportionately spread across Long Island. Story first published on my personal website before being published on Newsday. Graphics built using QGIS, Carto and Adobe Illustrator.&lt;/p&gt;</description>
     </item>
   </channel>
