@@ -10,14 +10,18 @@
 {{ $content := "" }}
 {{ $fetchSuccess := false }}
 
-{{/* Only attempt fetch if NOT in GitHub Pages environment (where Substack blocks requests) */}}
-{{ if not (getenv "GITHUB_PAGES") }}
-  {{ $res := resources.GetRemote $feedURL }}
-  {{ if $res }}
-    {{ with $res.Content }}
-      {{ $content = . }}
-      {{ $fetchSuccess = true }}
-    {{ end }}
+{{/* Use AllOrigins CORS proxy when on GitHub Actions to bypass Substack's blocking */}}
+{{ $actualURL := $feedURL }}
+{{ if getenv "GITHUB_PAGES" }}
+  {{/* AllOrigins provides CORS access - returns raw RSS feed */}}
+  {{ $actualURL = printf "https://api.allorigins.win/raw?url=%s" (urlquery $feedURL) }}
+{{ end }}
+
+{{ $res := resources.GetRemote $actualURL }}
+{{ if $res }}
+  {{ with $res.Content }}
+    {{ $content = . }}
+    {{ $fetchSuccess = true }}
   {{ end }}
 {{ end }}
 
