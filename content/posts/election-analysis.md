@@ -8,7 +8,8 @@ tags:
 - demographics
 - Python
 - Excel
-image: "/images/election-analysis.png" 
+image: "/images/election-analysis.png"
+gif: "/GIF/candidate.gif"
 ---
 
 Post-election analysis of local candidates' results in State Assembly, State Senate and Congressional districts against presidential candidates within the same district. Analysis done on data obtained by Newsday for Nassau and Suffolk counties using Python and Excel. Graphics built on Datawrapper.
