@@ -9,6 +9,7 @@ tags:
 - Python
 - Excel
 image: "/images/election-analysis.png"
+image2: "/images/elections-2024.png"
 gif: "/GIF/candidate.gif"
 ---
 
