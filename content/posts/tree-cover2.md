@@ -9,6 +9,7 @@ tags:
 - QGIS
 - Adobe Illustrator
 image: "/images/tree-cover.png"
+image2: "/images/tree-cover-pie.png"
 gif: "/GIF/tree-cover.gif"
 ---
 
