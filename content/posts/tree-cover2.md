@@ -8,7 +8,8 @@ tags:
 - spatial analysis
 - QGIS
 - Adobe Illustrator
-image: "/images/tree-cover.png" 
+image: "/images/tree-cover.png"
+gif: "/GIF/tree-cover.gif"
 ---
 
 A detailed analysis of tree cover of the U.S. Geological Survey's satellite data for every census tract on Long Island. Methodology involved use of zonal statistics and analysis shows that tree cover is disproportionately spread across Long Island. Story first published on my personal website before being published on Newsday. Graphics built using QGIS, Carto and Adobe Illustrator.
